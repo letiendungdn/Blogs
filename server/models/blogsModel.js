@@ -4,6 +4,7 @@ const blogSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
     },
     title: {
       type: String,
@@ -11,7 +12,7 @@ const blogSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
+      require: true,
     },
     content: {
       type: String,
@@ -19,26 +20,27 @@ const blogSchema = new mongoose.Schema(
     },
     canShare: {
       type: Boolean,
-      required: true,
+      require: true,
     },
     canComment: {
       type: Boolean,
-      required: true,
+      require: true,
     },
     canLike: {
       type: Boolean,
-      required: true,
+      require: true,
     },
     likesCount: {
       type: Number,
       require: false,
+      default: 0,
     },
     commentsCount: {
       type: Number,
       require: false,
       default: 0,
     },
-    shareCount: {
+    sharesCount: {
       type: Number,
       require: false,
       default: 0,
@@ -46,5 +48,6 @@ const blogSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
 
 module.exports = mongoose.model("blogs", blogSchema);
